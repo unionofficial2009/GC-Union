@@ -36,14 +36,14 @@ let args =  messageArray.slice(1);
   let c_user = message.author   
   let bicon = c_user.displayAvatarURL;   
   let bicon2 = bot.user.displayAvatarURL;   
-  let userroles = message.member.roles.filter(g => g.name != "@everyone").map(u=> `<@&${u.id}>`).join(", ");   
+  //let userroles = message.member.roles.filter(g => g.name != "@everyone").map(u=> `<@&${u.id}>`).join(", ");   
      
   let attendanceEmbed = new Discord.RichEmbed()
   .setDescription(`${message.author}`)
   .addField("Username", `${message.author.username}`)
   .addField("Tag", `${message.author.tag}`)
   .addField("ID", `${message.author.id}`)
-  .addField("Roles", `${userroles}`)
+  //.addField("Roles", `${userroles}`)
   .setColor("#15f153")
   .setThumbnail(bicon)
   .addField("Attendance", "Present")
