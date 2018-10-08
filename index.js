@@ -23,10 +23,10 @@ let args =  messageArray.slice(1);
     
  if(cmd === `${prefix}present`){
    
-    let gcmemberRole1 = message.guild.roles.find("name", "GC - Member 1.0");
-    let gcmemberRole2 = message.guild.roles.find("name", "GC - Member 2.0");
+    let gcmemberRole1 = message.guild.roles.find("name", "GC - Member");
+    //let gcmemberRole2 = message.guild.roles.find("name", "GC - Member 2.0");
    
-   if(message.member.roles.has(gcmemberRole1.id) || message.member.roles.has(gcmemberRole2.id)) {
+   if(message.member.roles.has(gcmemberRole1.id)) {
    if(cooldown.has(message.author.id)){
     message.delete();
   return message.reply("You have to wait 1 day.")
