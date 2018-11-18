@@ -23,6 +23,13 @@ let args =  messageArray.slice(1);
     
  if(cmd === `${prefix}present`){
    
+   let gcmemberRole1 = message.guild.roles.find("name", "GC - Member");
+   
+   if(message.member.roles.has(gcmemberRole1.id)) {
+     
+   } else {
+     message.reply("You don't have the permission to use this command.");
+   }  
     
     
   }
