@@ -29,7 +29,7 @@ let args =  messageArray.slice(1);
      
      if (message.channel.id != 498868396419448833) {
         message.delete().catch(O_o=>{});
-        return message.reply("Wrong channel! type %present here :arrow_right: <#498868396419448833> once a day ")
+        return message.reply("Wrong channel! type **%present** here :arrow_right: <#498868396419448833> once a day ")
      }  
      
      message.reply("test");
