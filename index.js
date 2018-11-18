@@ -27,6 +27,12 @@ let args =  messageArray.slice(1);
    
    if(message.member.roles.has(gcmemberRole1.id)) {
      
+     if (message.channel.id != 498868396419448833) {
+        return message.reply("Wrong channel! type &present here :arrow_right: <#498868396419448833> once a day ")
+     }  
+     
+     message.reply("test");
+     
    } else {
      message.reply("You don't have the permission to use this command.");
    }  
