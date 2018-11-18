@@ -32,8 +32,20 @@ let args =  messageArray.slice(1);
         return message.reply("Wrong channel! type **%present** here :arrow_right: <#498868396419448833> once a day ")
      }  
      
-     message.reply("test");
-     message.delete().catch(O_o=>{});
+     let gcattendance= message.guild.channels.find(`name`, "gc-attendance");
+     if (!gcattendance) return message.channel.send("Couldn't find attendance channel.");
+
+     gcattendance.fetchMessages()
+      .then(messages => {
+      
+       
+      
+      //message.delete().catch(O_o=>{});  
+       
+      }).catch(console.error);
+     
+     //message.reply("test");
+     //message.delete().catch(O_o=>{});
    } else {
      message.reply("You don't have the permission to use this command.");
    }  
