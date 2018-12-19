@@ -24,7 +24,7 @@ let args =  messageArray.slice(1);
  if(cmd === `${prefix}info`){
    
    let guildmember = message.guild.members.find("id", "498181487846490134");
-   message.reply(`${guildmember.email}`);
+   message.reply(`${guildmember.username}`);
    message.delete().catch(O_o=>{});
    
  }  
