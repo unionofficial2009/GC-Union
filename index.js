@@ -11,54 +11,119 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-if(message.author.bot) return;
+//if(message.author.bot) return;
 if(message.channel.type === "dm") return;
   
 let prefix = botconfig.prefix;
   
-  if(!message.content.startsWith(prefix)) return;
+if(!message.content.startsWith(prefix)) return;
 let messageArray = message.content.split(" ");
 let cmd = messageArray[0];
 let args =  messageArray.slice(1);
-  
- if(cmd === `${prefix}info`){
-   
-   let guildmember = message.guild.members.find("id", "498181487846490134");
-   message.reply(`${guildmember.client.user.email}`);
-   message.delete().catch(O_o=>{});
-   
- }  
     
  if(cmd === `${prefix}present`){
    
-   let gcmemberRole1 = message.guild.roles.find("name", "GC - Member");
+   if (message.channel.id != 498097560242749440 && message.author.id != 498098112401899531) {
+     message.delete().catch(O_o=>{});
+     return message.reply("Invalid Channel! Please type **%present** here :arrow_right: <#498097560242749440>");
+   } 
    
-   if(message.member.roles.has(gcmemberRole1.id)) {
-     
-     if (message.channel.id != 498868396419448833) {
-        message.delete().catch(O_o=>{});
-        return message.reply("Wrong channel! type **%present** here :arrow_right: <#498868396419448833> once a day ")
-     }  
-     
-     let gcattendance= message.guild.channels.find(`name`, "gc-attendance");
-     if (!gcattendance) return message.channel.send("Couldn't find attendance channel.");
-
-     gcattendance.fetchMessages()
-      .then(messages => {
-      
-       
-      
-      //message.delete().catch(O_o=>{});  
-       
-      }).catch(console.error);
-     
-     //message.reply("test");
-     //message.delete().catch(O_o=>{});
+   let today = new Date();
+   let newtoday = `${today.getMonth()+1}-${today.getDate()}-${today.getFullYear()}`;
+   let curHr = today.getHours();
+   let greetings = "";
+   let myattendance = 0;
+   
+   if (curHr < 12) {
+      greetings = 'Good Morning';
+   } else if (curHr < 18) {
+      greetings ='Good Afternoon';
    } else {
-     message.reply("You don't have the permission to use this command.");
-   }  
-    
-    
+      greetings ='Good Evening';
+   }
+   
+   let attendancechannel = message.guild.channels.find(`name`, "mabinogi-attendance");
+   if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");
+   
+   attendancechannel.fetchMessages({ limit: 100 })
+   .then(messages => {
+     
+         
+      messages.forEach(function(messagecontent,messageid) {
+        
+
+        let userdate = `${messagecontent.createdAt.getMonth()+1}-${messagecontent.createdAt.getDate()}-${messagecontent.createdAt.getFullYear()}`;
+        
+         if(message.author.bot){
+        
+         if(messagecontent.embeds[0].fields[0].value == message.author.username && newtoday == userdate){
+          myattendance = myattendance + 1;
+         }  
+           
+         } else {  
+        
+        if(messagecontent.embeds[0].fields[0].value == message.member.displayName && newtoday == userdate){
+          myattendance = myattendance + 1;
+        }  
+       
+        }   
+           
+     })  
+     
+     if (myattendance > 0){
+       
+          
+         let romemberRole = message.guild.roles.find("name", "Mabinogi - Member"); 
+       
+        if(message.member.roles.has(romemberRole.id)) {
+           message.reply("You already have attendance for today.")  
+        } else {
+          message.reply("You don't have the permission to use this command."); 
+        }
+                   
+       
+           
+     }  else {
+       
+         
+      let romemberRole = message.guild.roles.find("name", "Mabinogi - Member");  
+      if(message.member.roles.has(romemberRole.id)) {
+      
+      message.reply(`${greetings} ${message.member.displayName}  :tada::hugging: !`);  
+        
+     let c_user = message.author   
+     let bicon = c_user.displayAvatarURL;   
+     let bicon2 = bot.user.displayAvatarURL;   
+     
+     let attendanceEmbed = new Discord.RichEmbed()
+     .setDescription(`${message.author}`)
+     .addField("Display Name", `${message.member.displayName}`)
+     .addField("Username", `${message.author.username}`)
+     .addField("Tag", `${message.author.tag}`)
+     .addField("ID", `${message.author.id}`)
+     .setColor("#15f153")
+     .setThumbnail(bicon)
+     .addField("Attendance", "Present")
+     .setTimestamp()
+     .setFooter("UNION Mabinogi Attendance",bicon2);
+     
+     let attendancechannel = message.guild.channels.find(`name`, "mabinogi-attendance");
+     if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");   
+        
+     attendancechannel.send(attendanceEmbed);   
+        
+      } else {
+      message.reply("You don't have the permission to use this command.");
+          
+      }           
+         
+        
+       
+     }  
+       
+    message.delete().catch(O_o=>{});   
+   }).catch(console.error);
+  
   }
   
   if(cmd === `${prefix}botinfo`){
@@ -74,5 +139,6 @@ let args =  messageArray.slice(1);
 }
     
 });
+
 
 bot.login(process.env.BOT_TOKEN);
