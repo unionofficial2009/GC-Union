@@ -89,7 +89,7 @@ let args =  messageArray.slice(1);
       let romemberRole = message.guild.roles.find("name", "Mabinogi - Member");  
       if(message.member.roles.has(romemberRole.id)) {
       
-      message.reply(`${message.member.displayName}  :tada::hugging: !`);  
+      message.reply(`${message.member.displayName} **Happy Gaming!**  :tada::hugging: !`);  
         
      let c_user = message.author   
      let bicon = c_user.displayAvatarURL;   
