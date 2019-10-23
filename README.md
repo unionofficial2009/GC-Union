@@ -1,2 +1,2 @@
-# DN-Union
-DN Attendance
+# KUDOS-LS-Attendance
+LS Attendance
