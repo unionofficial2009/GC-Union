@@ -6,7 +6,7 @@ let cdseconds = 86400;
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("%present for Attendance", {type: "WATCHING"});
+  bot.user.setActivity("!present for Attendance", {type: "WATCHING"});
   
 });
 
@@ -23,9 +23,9 @@ let args =  messageArray.slice(1);
     
  if(cmd === `${prefix}present`){
    
-   if (message.channel.id != 498097560242749440 && message.author.id != 498098112401899531) {
+   if (message.channel.id != 636580983860232202 && message.author.id != 636582989693976577) {
      message.delete().catch(O_o=>{});
-     return message.reply("Invalid Channel! Please type **%present** here :arrow_right: <#498097560242749440>");
+     return message.reply("Invalid Channel! Please type **!present** here :arrow_right: <#636580983860232202>");
    } 
    
    let today = new Date();
@@ -42,7 +42,7 @@ let args =  messageArray.slice(1);
       greetings ='Good Evening';
    }
    
-   let attendancechannel = message.guild.channels.find(`name`, "mabinogi-attendance");
+   let attendancechannel = message.guild.channels.find(`name`, "lumia-saga-attendance");
    if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");
    
    attendancechannel.fetchMessages({ limit: 100 })
@@ -73,7 +73,7 @@ let args =  messageArray.slice(1);
      if (myattendance > 0){
        
           
-         let romemberRole = message.guild.roles.find("name", "Mabinogi - Member"); 
+         let romemberRole = message.guild.roles.find("name", "Lumia Saga Member"); 
        
         if(message.member.roles.has(romemberRole.id)) {
            message.reply("You already have attendance for today.")  
@@ -86,10 +86,10 @@ let args =  messageArray.slice(1);
      }  else {
        
          
-      let romemberRole = message.guild.roles.find("name", "Mabinogi - Member");  
+      let romemberRole = message.guild.roles.find("name", "Lumia Saga Member");  
       if(message.member.roles.has(romemberRole.id)) {
       
-      message.reply(`**Happy Gaming!**  :tada::hugging: !`);  
+      message.reply(`${greetings} ${message.member.displayName}  :tada::hugging: !`);  
         
      let c_user = message.author   
      let bicon = c_user.displayAvatarURL;   
@@ -105,9 +105,9 @@ let args =  messageArray.slice(1);
      .setThumbnail(bicon)
      .addField("Attendance", "Present")
      .setTimestamp()
-     .setFooter("UNION Mabinogi Attendance",bicon2);
+     .setFooter("KUDOS Lumia Saga Attendance",bicon2);
      
-     let attendancechannel = message.guild.channels.find(`name`, "mabinogi-attendance");
+     let attendancechannel = message.guild.channels.find(`name`, "lumia-saga-attendance");
      if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");   
         
      attendancechannel.send(attendanceEmbed);   
