@@ -35,11 +35,11 @@ let args =  messageArray.slice(1);
    let myattendance = 0;
    
    if (curHr < 12) {
-      greetings = 'Good Evening';
+      greetings = 'Good Morning';
    } else if (curHr < 18) {
       greetings ='Good Afternoon';
    } else {
-      greetings ='Good Morning';
+      greetings ='Good Evening';
    }
    
    let attendancechannel = message.guild.channels.find(`name`, "lumia-saga-attendance");
