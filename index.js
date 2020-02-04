@@ -42,7 +42,7 @@ let args =  messageArray.slice(1);
       greetings ='Have a Nice Day';
    }
    
-   let attendancechannel = message.guild.channels.find(`name`, "lumia-saga-attendance");
+   let attendancechannel = message.guild.channels.find(`name`, "club-audition-attendance");
    if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");
    
    attendancechannel.fetchMessages({ limit: 100 })
@@ -73,7 +73,7 @@ let args =  messageArray.slice(1);
      if (myattendance > 0){
        
           
-         let romemberRole = message.guild.roles.find("name", "Lumia Saga Member"); 
+         let romemberRole = message.guild.roles.find("name", "Club Audition Member"); 
        
         if(message.member.roles.has(romemberRole.id)) {
            message.reply("You already have attendance for today.")  
@@ -86,7 +86,7 @@ let args =  messageArray.slice(1);
      }  else {
        
          
-      let romemberRole = message.guild.roles.find("name", "Lumia Saga Member");  
+      let romemberRole = message.guild.roles.find("name", "Club Audition Member");  
       if(message.member.roles.has(romemberRole.id)) {
       
       message.reply(`${greetings} ${message.member.displayName}  :tada::hugging: !`);  
@@ -105,9 +105,9 @@ let args =  messageArray.slice(1);
      .setThumbnail(bicon)
      .addField("Attendance", "Present")
      .setTimestamp()
-     .setFooter("KUDOS Lumia Saga Attendance",bicon2);
+     .setFooter("KUDOS Club Audition Attendance",bicon2);
      
-     let attendancechannel = message.guild.channels.find(`name`, "lumia-saga-attendance");
+     let attendancechannel = message.guild.channels.find(`name`, "club-audition-attendance");
      if (!attendancechannel) return message.channel.send("Couldn't find attendance channel.");   
         
      attendancechannel.send(attendanceEmbed);   
