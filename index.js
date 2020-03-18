@@ -23,9 +23,9 @@ let args =  messageArray.slice(1);
     
  if(cmd === `${prefix}present`){
    
-   if (message.channel.id != 636580983860232202 && message.author.id != 636582989693976577) {
+   if (message.channel.id != 683323171771777059 && message.author.id != 636582989693976577) {
      message.delete().catch(O_o=>{});
-     return message.reply("Invalid Channel! Please type **!present** here :arrow_right: <#636580983860232202>");
+     return message.reply("Invalid Channel! Please type **!present** here :arrow_right: <#683323171771777059>");
    } 
    
    let today = new Date();
